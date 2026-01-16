@@ -1,0 +1,24 @@
+.button {
+  color: var(--text-primary);
+  background-color: var(--bg-card);
+  padding: 8px;
+
+  &:hover {
+    background-color: var(--bg-hover);
+  }
+
+}
+
+.rounded {
+  border-radius: 999px;
+}
+
+.sm {
+  font-size: var(--font-sm);
+  padding: 4px 8px;
+}
+
+.m {
+  font-size: var(--font-m);
+  padding: 8px 16px;
+}

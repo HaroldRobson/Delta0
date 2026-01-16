@@ -1,6 +1,6 @@
-import "./App.css";
-import Banner from "./components/Banner";
-
+import Button from "./Button/Button";
+import Banner from "./components/Banner/Banner";
+import s from "./App.module.css";
 /*
  * Need:
  * Landing page
@@ -18,8 +18,39 @@ import Banner from "./components/Banner";
 function App() {
   return (
     <>
-      <div>
+      <div className={s.main}>
         <Banner />
+        <Button
+          rounded={true}
+          onClick={() => {
+            console.log("clicked");
+          }}
+          size="S"
+          label={"btn rounded S"}
+        />
+        <Button
+          rounded={true}
+          onClick={() => {
+            console.log("clicked");
+          }}
+          size="M"
+          label={"btn rounded M"}
+        />
+
+        <Button
+          onClick={() => {
+            console.log("clicked");
+          }}
+          size="S"
+          label={"btn S"}
+        />
+        <Button
+          onClick={() => {
+            console.log("clicked");
+          }}
+          size="M"
+          label={"btn M"}
+        />
       </div>
     </>
   );
