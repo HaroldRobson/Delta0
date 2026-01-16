@@ -1,6 +1,7 @@
 import Banner from "./components/Banner/Banner";
 import Home from "./components/Home/Home";
 import s from "./App.module.css";
+import Trade from "./Trade";
 import { Route, Routes, useLocation } from "react-router-dom";
 /*
  * Need:
@@ -19,6 +20,14 @@ import { Route, Routes, useLocation } from "react-router-dom";
   the functions as const
 
  * */
+
+function Screen2() {
+  return (
+    <div>
+      <p>screen 2</p>
+    </div>
+  );
+}
 
 function Home() {
   return (
