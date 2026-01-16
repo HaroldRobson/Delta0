@@ -5,10 +5,9 @@
   justify-content: end;
   gap: 0.5rem;
   padding: 16px 24px;
-
-  @media (max-width: 1023px) {
-    display: none;
-  }
+  border-bottom: 0.1px;
+  border-color: color-mix(in srgb, var(--accent-green) 30%, transparent);
+  border-style: solid;
 }
 
 .navWrapper {
@@ -19,15 +18,25 @@
 }
 
 .bannerLinks {
+  font-size: 1.2rem;
+  font-weight: 600;
   margin-right: 24px;
 }
 
 .navLink {
-  padding: 4px;
+  margin-inline: 24px;
+  padding: 8px 8px;
 
   &:hover {
     cursor: pointer;
+    background-color: var(--accent-green);
+    border-radius: 999px;
   }
+}
+
+.active {
+  color: var(--accent-green);
+  border-bottom: 2px solid var(--accent-green);
 }
 
 .connectBtn {
