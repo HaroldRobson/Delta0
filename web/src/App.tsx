@@ -21,22 +21,6 @@ import { Route, Routes, useLocation } from "react-router-dom";
 
  * */
 
-function Screen2() {
-  return (
-    <div>
-      <p>screen 2</p>
-    </div>
-  );
-}
-
-function Home() {
-  return (
-    <div>
-      <p>home</p>
-    </div>
-  );
-}
-
 function App() {
   const location = useLocation();
   return (
