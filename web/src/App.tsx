@@ -20,10 +20,10 @@ import { Route, Routes, useLocation } from "react-router-dom";
 
  * */
 
-function Screen2() {
+function Home() {
   return (
     <div>
-      <p>screen 2</p>
+      <p>home</p>
     </div>
   );
 }
