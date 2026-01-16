@@ -1,0 +1,108 @@
+.card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin: 4px 0 0 0;
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+.refreshBtn {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: transparent;
+  cursor: pointer;
+}
+
+.refreshBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.error {
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 80, 80, 0.12);
+  border: 1px solid rgba(255, 80, 80, 0.22);
+  font-size: 13px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.symbol {
+  font-weight: 700;
+}
+
+.address {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.amount {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.empty {
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px dashed rgba(255, 255, 255, 0.16);
+  opacity: 0.85;
+  font-size: 13px;
+}
+
+.emptyHint {
+  margin-top: 6px;
+  opacity: 0.7;
+  font-size: 12px;
+}
+
+/* skeleton */
+.skelLineLg, .skelLineMd, .skelLineSm {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.skelLineLg { width: 100px; height: 14px; }
+.skelLineMd { width: 80px; height: 14px; }
+.skelLineSm { width: 140px; height: 12px; opacity: 0.7; }

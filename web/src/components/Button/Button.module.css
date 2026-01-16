@@ -1,0 +1,21 @@
+.button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border-radius: 999px;
+  padding: 8px 16px;
+  color: var(--text-primary);
+  background-color: var(--bg-card);
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.glow {
+  box-shadow: var(--shadow-glow);
+}

@@ -1,0 +1,36 @@
+.container {
+  padding: 24px;
+}
+
+.title {
+  margin: 0 0 16px 0;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.buttonRow {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 18px;
+}
+
+.left,
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.placeholderBox {
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  opacity: 0.8;
+}
