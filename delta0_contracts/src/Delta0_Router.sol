@@ -1,0 +1,11 @@
+pragma solidity ^0.8.30;
+import "./Delta0_main.sol";
+
+contract Delta0_Router {
+    mapping(address => address) TokenAddressToMainAddress; // which contract for which token
+
+    function new_proxy(address Token) private {
+        //todo
+        address proxy_address = new Delta0_main();
+    }
+}
