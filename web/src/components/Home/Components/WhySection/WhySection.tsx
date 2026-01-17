@@ -1,58 +1,61 @@
 import s from "./WhySection.module.css";
 import { FeatureGrid } from "@components/FeatureGrid/FeatureGrid";
+import { type FeatureBoxProps, FeatureBox } from "@components/FeatureGrid/FeatureBox";
 import {
-  type FeatureBoxProps,
-  FeatureBox,
-} from "@components/FeatureGrid/FeatureBox";
-import {
-  MdShield,
-  MdSpeed,
-  MdShowChart,
-  MdAccountBalance,
+  MdSecurity,
+  MdSavings,
+  MdVerified,
+  MdSwapHoriz,
 } from "react-icons/md";
 
 export default function WhySection() {
   const featureBoxes: Array<FeatureBoxProps> = [
     {
-      icon: <MdShield />,
-      title: "Delta Neutral",
+      icon: <MdSecurity />,
+      title: "Delta-neutral",
       description:
-        "Your position is fully hedged, eliminating directional market risk while generating consistent yield.",
+        "Positions are automatically hedged in real time to maintain delta neutrality and control market risk.",
     },
     {
-      icon: <MdSpeed />,
-      title: "Real-Time Hedging",
+      icon: <MdSavings />,
+      title: "Yield Generation",
       description:
-        "Automated rebalancing ensures your position stays neutral as market conditions change.",
+        "Consistent yield generation on current balances.",
     },
     {
-      icon: <MdShowChart />,
-      title: "Transparent Yields",
+      icon: <MdVerified />,
+      title: "Fully On-chain",
       description:
-        "All yield sources are on-chain and verifiable. No hidden fees or opaque strategies.",
+        "All executions, hedging and yield generation run transparently on-chain and verifiable supported by HyperCore and HyperEVM. No hidden fees or opaque strategies.",
     },
     {
-      icon: <MdAccountBalance />,
-      title: "Institutional Grade",
+      icon: <MdSwapHoriz />,
+      title: "One-click Cross-chain Swaps",
       description:
-        "Battle-tested smart contracts with comprehensive audits and proven security measures.",
+        "Bridge from any chain and token into your chosen HyperEVM asset in one seamless flow.",
     },
   ];
 
   return (
-    <section className={s.whySection}>
-      <h2 className={s.whyTitle}>Why Delta0?</h2>
-      <p className={s.whySubtitle}>
-        Stable yields through delta-neutral hedging strategies
-      </p>
+    <section className={s.section}>
+      <div className={s.bgGlow} />
+
+      <div className={s.header}>
+        <h2 className={s.title}>Why Delta0?</h2>
+        <p className={s.subtitle}>
+          Stable yields through delta-neutral hedging strategies
+        </p>
+      </div>
+
       <FeatureGrid layout={featureBoxes.length}>
         {featureBoxes.map((box, idx) => (
-          <FeatureBox
-            key={idx}
-            icon={box.icon}
-            title={box.title}
-            description={box.description}
-          />
+          <div key={idx} className={s.card}>
+            <FeatureBox
+              icon={box.icon}
+              title={box.title}
+              description={box.description}
+            />
+          </div>
         ))}
       </FeatureGrid>
     </section>

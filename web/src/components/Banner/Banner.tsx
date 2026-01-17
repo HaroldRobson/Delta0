@@ -25,12 +25,17 @@ function NavItem({ location, label }: NavLinkProps) {
 export default function Banner() {
   return (
     <nav className={s.banner}>
-      <div className={s.bannerLinks}>
-        <NavItem location={"/"} label={"Home"} />
-        <NavItem location={"/Account"} label={"Account"} />
-        <NavItem location={"/bridge"} label={"Bridge"} />
+      <NavLink to="/" className={s.logo}>
+        Delta0
+      </NavLink>
+      <div className={s.rightSection}>
+        <div className={s.bannerLinks}>
+          <NavItem location={"/"} label={"Home"} />
+          <NavItem location={"/Account"} label={"Account"} />
+          <NavItem location={"/bridge"} label={"Bridge"} />
+        </div>
+        <ConnectButton client={client} />
       </div>
-      <ConnectButton client={client} />
     </nav>
   );
 }

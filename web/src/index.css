@@ -45,7 +45,7 @@ button {
 body {
   --bg-dark: #070b09;
   /* The "Racing Green" deep black background */
-  --accent-green: #00FFB2;
+  --accent-green: #78FFDC;
   /* The signature "Spring Green" accent */
   --text-primary: #fafafa;
   /* "Alabaster" white for headings and main text */
@@ -61,7 +61,7 @@ body {
   /* Hover state for buttons or menu items */
 
   /* Utilities */
-  --shadow-glow: 0 0 15px rgba(0, 245, 84, 0.3);
+  --shadow-glow: 0 0 15px rgba(120, 255, 220, 0.3);
 
 
   /**/
