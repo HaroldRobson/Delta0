@@ -20,6 +20,9 @@ importers:
       '@mysten/dapp-kit':
         specifier: ^0.20.0
         version: 0.20.0(@tanstack/react-query@5.90.18(react@19.2.3))(@types/react-dom@19.2.3(@types/react@19.2.8))(@types/react@19.2.8)(babel-plugin-macros@3.1.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
+      '@nktkas/hyperliquid':
+        specifier: ^0.30.2
+        version: 0.30.2(typescript@5.9.3)
       '@solana/wallet-adapter-react':
         specifier: ^0.15.39
         version: 0.15.39(@solana/web3.js@1.98.4(bufferutil@4.1.0)(typescript@5.9.3)(utf-8-validate@5.0.10))(bs58@6.0.0)(fastestsmallesttextencoderdecoder@1.0.22)(react-native@0.83.1(@babel/core@7.28.6)(@types/react@19.2.8)(bufferutil@4.1.0)(react@19.2.3)(utf-8-validate@5.0.10))(react@19.2.3)(typescript@5.9.3)
@@ -62,6 +65,9 @@ importers:
       wagmi:
         specifier: ^2.19.5
         version: 2.19.5(@react-native-async-storage/async-storage@1.24.0(react-native@0.83.1(@babel/core@7.28.6)(@types/react@19.2.8)(bufferutil@4.1.0)(react@19.2.3)(utf-8-validate@5.0.10)))(@tanstack/query-core@5.90.18)(@tanstack/react-query@5.90.18(react@19.2.3))(@types/react@19.2.8)(bufferutil@4.1.0)(fastestsmallesttextencoderdecoder@1.0.22)(react-native@0.83.1(@babel/core@7.28.6)(@types/react@19.2.8)(bufferutil@4.1.0)(react@19.2.3)(utf-8-validate@5.0.10))(react@19.2.3)(typescript@5.9.3)(utf-8-validate@5.0.10)(viem@2.44.4(bufferutil@4.1.0)(typescript@5.9.3)(utf-8-validate@5.0.10)(zod@4.3.5))(zod@4.3.5)
+      ws:
+        specifier: ^8.19.0
+        version: 8.19.0(bufferutil@4.1.0)(utf-8-validate@5.0.10)
     devDependencies:
       '@eslint/js':
         specifier: ^9.39.1
@@ -817,6 +823,15 @@ packages:
   '@napi-rs/wasm-runtime@1.1.1':
     resolution: {integrity: sha512-p64ah1M1ld8xjWv3qbvFwHiFVWrq1yFvV4f7w+mzaqiR4IlSgkqhcRdHwsGgomwzBH51sRY4NEowLxnaBjcW/A==}
 
+  '@nktkas/hyperliquid@0.30.2':
+    resolution: {integrity: sha512-xz1/oGRunLxY1z1FOsCsXUFOWx8ADL3vL87pQkpl68gIxHT6Duf5z18uxFQWxlPPyB5PHYmpudlziJ6xVPB4Vw==}
+    engines: {node: '>=20.19.0'}
+    hasBin: true
+
+  '@nktkas/rews@1.2.3':
+    resolution: {integrity: sha512-cpfcIlkUpYlbAI1cvfCTBCajWZfUM6gWyuCJXszECKxdetsU3vURKC8Sz//MDR6RWoULk9T48eJ+0agxT7yB1w==}
+    engines: {node: '>=20.19.0'}
+
   '@noble/ciphers@1.2.1':
     resolution: {integrity: sha512-rONPWMC7PeExE077uLE4oqWrZ1IvAfz3oH9LibVAcVCopJiA9R62uavnbEzdkVmJYI6M6Zgkbeb07+tWjlq2XA==}
     engines: {node: ^14.21.3 || >=16}
@@ -859,6 +874,10 @@ packages:
     resolution: {integrity: sha512-gbKGcRUYIjA3/zCCNaWDciTMFI0dCkvou3TL8Zmy5Nc7sJ47a0jtOeZoTaMxkuqRo9cRhjOdZJXegxYE5FN/xw==}
     engines: {node: ^14.21.3 || >=16}
 
+  '@noble/curves@2.0.1':
+    resolution: {integrity: sha512-vs1Az2OOTBiP4q0pwjW5aF0xp9n4MxVrmkFBxc6EKZc6ddYx5gaZiAsZoq0uRRXWbi3AT/sBqn05eRPtn1JCPw==}
+    engines: {node: '>= 20.19.0'}
+
   '@noble/hashes@1.3.2':
     resolution: {integrity: sha512-MVC8EAQp7MvEcm30KWENFjgR+Mkmf+D189XJTkFIlwohU5hcBbn1ZkKq7KVTi2Hme3PMGF390DaL52beVrIihQ==}
     engines: {node: '>= 16'}
@@ -882,6 +901,10 @@ packages:
   '@noble/hashes@1.8.0':
     resolution: {integrity: sha512-jCs9ldd7NwzpgXDIf6P3+NrHh9/sD6CQdxHyjQI+h/6rDNo88ypBxxz45UDuZHz9r3tNz7N/VInSVoVdtXEI4A==}
     engines: {node: ^14.21.3 || >=16}
+
+  '@noble/hashes@2.0.1':
+    resolution: {integrity: sha512-XlOlEbQcE9fmuXxrVTXCTlG2nlRXa9Rj3rr5Ue/+tX+nmkgbX720YHh0VR3hBF9xDvwnb8D2shVGOwNx+ulArw==}
+    engines: {node: '>= 20.19.0'}
 
   '@oxc-project/runtime@0.97.0':
     resolution: {integrity: sha512-yH0zw7z+jEws4dZ4IUKoix5Lh3yhqIJWF9Dc8PWvhpo7U7O+lJrv7ZZL4BeRO0la8LBQFwcCewtLBnVV7hPe/w==}
@@ -1490,6 +1513,9 @@ packages:
 
   '@scure/base@1.2.6':
     resolution: {integrity: sha512-g/nm5FgUa//MCj1gV09zTJTaM6KBAHqLN907YVQqf7zC49+DcO4B1so4ZX07Ef10Twr6nuqYEH9GEggFXA4Fmg==}
+
+  '@scure/base@2.0.0':
+    resolution: {integrity: sha512-3E1kpuZginKkek01ovG8krQ0Z44E3DHPjc5S2rjJw9lZn3KSQOs8S7wqikF/AH7iRanHypj85uGyxk0XAyC37w==}
 
   '@scure/bip32@1.4.0':
     resolution: {integrity: sha512-sVUpc0Vq3tXCkDGYVWGIZTRfnvu8LoTDaev7vbwh0omSvVORONr960MQWdKqJDCReIEmTj3PAr73O3aoxz7OPg==}
@@ -4244,8 +4270,16 @@ packages:
     engines: {node: '>=20.19.4'}
     hasBin: true
 
+  micro-eth-signer@0.18.1:
+    resolution: {integrity: sha512-vXKhCZxrytpl+dXR9JeaE41ZVFndi7wCKc1Jd22smOMAeDErvRcXaTxhYUf1yQxis4n2kIdv/pH7iuf+5/cj+Q==}
+    engines: {node: '>= 20.19.0'}
+
   micro-ftch@0.3.1:
     resolution: {integrity: sha512-/0LLxhzP0tfiR5hcQebtudP56gUurs2CLkGarnCiB/OqEyUFQ6U3paQi/tgLv0hBJYt2rnr9MNpxz4fiiugstg==}
+
+  micro-packed@0.8.0:
+    resolution: {integrity: sha512-AKb8znIvg9sooythbXzyFeChEY0SkW0C6iXECpy/ls0e5BtwXO45J9wD9SLzBztnS4XmF/5kwZknsq+jyynd/A==}
+    engines: {node: '>= 20.19.0'}
 
   microdiff@1.5.0:
     resolution: {integrity: sha512-Drq+/THMvDdzRYrK0oxJmOKiC24ayUV8ahrt8l3oRK51PWt6gdtrIGrlIH3pT/lFh1z93FbAcidtsHcWbnRz8Q==}
@@ -7059,6 +7093,17 @@ snapshots:
       '@tybys/wasm-util': 0.10.1
     optional: true
 
+  '@nktkas/hyperliquid@0.30.2(typescript@5.9.3)':
+    dependencies:
+      '@nktkas/rews': 1.2.3
+      '@noble/hashes': 2.0.1
+      micro-eth-signer: 0.18.1
+      valibot: 1.2.0(typescript@5.9.3)
+    transitivePeerDependencies:
+      - typescript
+
+  '@nktkas/rews@1.2.3': {}
+
   '@noble/ciphers@1.2.1': {}
 
   '@noble/ciphers@1.3.0': {}
@@ -7099,6 +7144,10 @@ snapshots:
     dependencies:
       '@noble/hashes': 1.8.0
 
+  '@noble/curves@2.0.1':
+    dependencies:
+      '@noble/hashes': 2.0.1
+
   '@noble/hashes@1.3.2': {}
 
   '@noble/hashes@1.4.0': {}
@@ -7110,6 +7159,8 @@ snapshots:
   '@noble/hashes@1.7.2': {}
 
   '@noble/hashes@1.8.0': {}
+
+  '@noble/hashes@2.0.1': {}
 
   '@oxc-project/runtime@0.97.0': {}
 
@@ -8169,6 +8220,8 @@ snapshots:
   '@scure/base@1.1.9': {}
 
   '@scure/base@1.2.6': {}
+
+  '@scure/base@2.0.0': {}
 
   '@scure/bip32@1.4.0':
     dependencies:
@@ -12516,7 +12569,17 @@ snapshots:
       - supports-color
       - utf-8-validate
 
+  micro-eth-signer@0.18.1:
+    dependencies:
+      '@noble/curves': 2.0.1
+      '@noble/hashes': 2.0.1
+      micro-packed: 0.8.0
+
   micro-ftch@0.3.1: {}
+
+  micro-packed@0.8.0:
+    dependencies:
+      '@scure/base': 2.0.0
 
   microdiff@1.5.0: {}
 
