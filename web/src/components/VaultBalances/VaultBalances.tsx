@@ -1,4 +1,3 @@
-<<<<<<< HEAD
  import { useMemo } from "react";
 import s from "./VaultBalances.module.css";
 
@@ -92,63 +91,6 @@ function SkeletonRow() {
         <div className={s.skelLineSm} />
       </div>
       <div className={s.skelLineMd} />
-=======
-import s from "./VaultBalances.module.css";
-
-type TokenRow = {
-  symbol: string;
-  address: `0x${string}`;
-  amount: string; // already formatted in Trade.tsx
-};
-
-type Props = {
-  isLoading: boolean;
-  tokens: TokenRow[];
-  totalValue: number;      // NEW
-  onRefresh: () => void;
-};
-
-function formatUsdc(x: number) {
-  return x.toLocaleString(undefined, {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
-}
-
-export default function VaultBalances({ isLoading, tokens, totalValue, onRefresh }: Props) {
-  return (
-    <div className={s.card}>
-      <div className={s.header}>
-        <div className={s.titleBlock}>
-          <div className={s.title}>Holdings</div>
-          <div className={s.subTitle}>Total Value</div>
-        </div>
-
-        <div className={s.totalValue}>
-          ${formatUsdc(totalValue)} <span className={s.totalUnit}>USDC</span>
-        </div>
-
-        <button className={s.refreshBtn} onClick={onRefresh} disabled={isLoading}>
-          {isLoading ? "Refreshing..." : "Refresh"}
-        </button>
-      </div>
-
-      <div className={s.list}>
-        {tokens.length === 0 ? (
-          <div className={s.empty}>No holdings</div>
-        ) : (
-          tokens.map((t) => (
-            <div key={`${t.symbol}-${t.address}`} className={s.row}>
-              <div className={s.left}>
-                <div className={s.sym}>{t.symbol}</div>
-                <div className={s.addr}>{t.address}</div>
-              </div>
-              <div className={s.amt}>${t.amount}</div>
-            </div>
-          ))
-        )}
-      </div>
->>>>>>> 1b98503 (Trade page)
     </div>
   );
 }

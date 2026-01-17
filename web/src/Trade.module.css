@@ -2,26 +2,13 @@
   padding: 24px;
 }
 
-<<<<<<< HEAD
-.title {
-  margin: 0 0 16px 0;
-  font-size: 28px;
-  font-weight: 800;
-}
-
-.buttonRow {
-  display: flex;
-=======
 .buttonRow {
   display: flex;
   justify-content: center; 
->>>>>>> 1b98503 (Trade page)
   gap: 16px;
   margin-bottom: 20px;
 }
 
-<<<<<<< HEAD
-=======
 .primaryBtn {
   background: #00c853;
   color: white;
@@ -56,7 +43,6 @@
   cursor: not-allowed;
 }
 
->>>>>>> 1b98503 (Trade page)
 .grid {
   display: grid;
   grid-template-columns: 420px 1fr;
@@ -75,10 +61,6 @@
   padding: 16px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.03);
-<<<<<<< HEAD
-  opacity: 0.8;
-}
-=======
   opacity: 0.85;
 }
 
@@ -180,4 +162,3 @@
 .exchange-chart.compact {
   padding: 1rem;
 }
->>>>>>> 1b98503 (Trade page)
