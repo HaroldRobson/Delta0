@@ -1,0 +1,50 @@
+.gridWrapper {
+  position: relative;
+  width: 100%;
+  padding: 0 24px;
+  margin-bottom: 20px;
+}
+
+/* Horizontal lines that extend to viewport edges */
+.gridWrapper::before,
+.gridWrapper::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.gridWrapper::before {
+  top: 0;
+}
+
+.gridWrapper::after {
+  bottom: 0;
+}
+
+.grid {
+  display: grid;
+  position: relative;
+}
+
+.gridItem {
+  position: relative;
+}
+
+/* Vertical dividers that extend past content */
+.gridItem::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  bottom: -20px;
+  right: 0;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.gridItem:last-child::after {
+  display: none;
+}

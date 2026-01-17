@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Unbounded';
+  src: url('./fonts/Unbounded-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 *,
 *::before,
 *::after {
@@ -27,7 +34,7 @@ button {
 body {
   --bg-dark: #070b09;
   /* The "Racing Green" deep black background */
-  --accent-green: #00f555;
+  --accent-green: #00FFB2;
   /* The signature "Spring Green" accent */
   --text-primary: #fafafa;
   /* "Alabaster" white for headings and main text */
@@ -54,7 +61,7 @@ body {
   margin: 0;
   background-color: var(--bg-dark);
   color: var(--text-primary);
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: 'Unbounded', system-ui, -apple-system, sans-serif;
   line-height: 1.5;
   min-height: 100vh;
 }

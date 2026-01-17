@@ -1,0 +1,26 @@
+.homeWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  gap: 40px;
+  overflow-x: hidden;
+}
+
+.copyWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 150px;
+  max-width: 50%;
+}
+
+.title {
+  font-size: 82px;
+  font-weight: 700;
+  color: var(--accent-green);
+}
+
+.tagline {
+  font-size: 56px;
+  font-weight: 600;
+}

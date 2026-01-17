@@ -5,8 +5,10 @@
 .buttonRow {
   display: flex;
   justify-content: center; 
-  gap: 16px;
-  margin-bottom: 20px;
+.title {
+  margin: 0 0 16px 0;
+  font-size: 28px;
+  font-weight: 800;
 }
 
 .primaryBtn {

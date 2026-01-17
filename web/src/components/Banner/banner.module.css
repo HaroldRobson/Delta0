@@ -31,6 +31,7 @@
     cursor: pointer;
     background-color: var(--accent-green);
     border-radius: 999px;
+    color: var(--bg-dark);
   }
 }
 

@@ -1,24 +1,21 @@
 .button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border-radius: 999px;
+  padding: 8px 16px;
   color: var(--text-primary);
   background-color: var(--bg-card);
-  padding: 8px;
+  cursor: pointer;
 
-  &:hover {
-    background-color: var(--bg-hover);
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
-
 }
 
-.rounded {
-  border-radius: 999px;
-}
-
-.sm {
-  font-size: var(--font-sm);
-  padding: 4px 8px;
-}
-
-.m {
-  font-size: var(--font-m);
-  padding: 8px 16px;
+.glow {
+  box-shadow: var(--shadow-glow);
 }

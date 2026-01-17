@@ -1,5 +1,5 @@
 import Banner from "./components/Banner/Banner";
-//import Trade from "./Trade";
+import Home from "./components/Home/Home";
 import s from "./App.module.css";
 import Trade from "./Trade";
 import { Route, Routes } from "react-router-dom";
@@ -47,6 +47,7 @@ function Home() {
 }
 
 function App() {
+  //  const location = useLocation();
   return (
     <div className={s.main}>
       <Banner />
@@ -54,6 +55,14 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/trade" element={<Trade />} />
       </Routes>
+
+      {/* location.pathname === "/" ? (
+        <footer className={s.footer}>
+          <p>footer content here</p>
+        </footer>
+      ) : (
+        <></>
+      ) */}
     </div>
   );
 }
