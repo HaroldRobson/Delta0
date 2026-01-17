@@ -11,6 +11,7 @@ import {
   type CandlestickData,
   type HistogramData,
   type UTCTimestamp,
+  ColorType,
 } from "lightweight-charts";
 
 const PAIRS = [
@@ -35,8 +36,17 @@ const TF_SEC: Record<TF, number | null> = {
   ALL: null,
 };
 
-type OHLC = [string | number, string | number, string | number, string | number, string | number];
-type History = { line: AreaData<UTCTimestamp>[]; candles: CandlestickData<UTCTimestamp>[] };
+type OHLC = [
+  string | number,
+  string | number,
+  string | number,
+  string | number,
+  string | number,
+];
+type History = {
+  line: AreaData<UTCTimestamp>[];
+  candles: CandlestickData<UTCTimestamp>[];
+};
 type WSStatus = "connecting" | "live" | "disconnected";
 
 const MAX_POINTS = 800;
@@ -59,7 +69,10 @@ async function ohlc(restPair: string, tf: TF): Promise<OHLC[]> {
 
   const res = await fetch(url);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  const j = (await res.json()) as { error?: string[]; result?: Record<string, unknown> };
+  const j = (await res.json()) as {
+    error?: string[];
+    result?: Record<string, unknown>;
+  };
   if (j.error?.length) throw new Error(j.error.join(", "));
 
   const result = j.result ?? {};
@@ -74,7 +87,10 @@ function toHistory(rows: OHLC[]): History {
   const candles: History["candles"] = [];
   for (const r of rows) {
     const t = Number(r[0]) as UTCTimestamp;
-    const o = Number(r[1]), h = Number(r[2]), l = Number(r[3]), c = Number(r[4]);
+    const o = Number(r[1]),
+      h = Number(r[2]),
+      l = Number(r[3]),
+      c = Number(r[4]);
     if (![o, h, l, c].every((x) => Number.isFinite(x) && x > 0)) continue;
     line.push({ time: t, value: c });
     candles.push({ time: t, open: o, high: h, low: l, close: c });
@@ -103,8 +119,10 @@ export default function ExchangeChart({
 }: Props) {
   const boxRef = useRef<HTMLDivElement | null>(null);
   const chartRef = useRef<IChartApi | null>(null);
-  const priceRef = useRef<ISeriesApi<typeof AreaSeries> | ISeriesApi<typeof CandlestickSeries> | null>(null);
-  const volRef = useRef<ISeriesApi<typeof HistogramSeries> | null>(null);
+  const priceRef = useRef<
+    ISeriesApi<"Area"> | ISeriesApi<"Candlestick"> | null
+  >(null);
+  const volRef = useRef<ISeriesApi<"Histogram"> | null>(null);
 
   const [pairKey, setPairKey] = useState<PairKey>("SOL_USDC");
   const [tf, setTf] = useState<TF>("1W");
@@ -134,9 +152,11 @@ export default function ExchangeChart({
       min == null
         ? hist
         : {
-          line: hist.line.filter((p) => p.time >= (min as UTCTimestamp)),
-          candles: hist.candles.filter((c) => c.time >= (min as UTCTimestamp)),
-        };
+            line: hist.line.filter((p) => p.time >= (min as UTCTimestamp)),
+            candles: hist.candles.filter(
+              (c) => c.time >= (min as UTCTimestamp),
+            ),
+          };
 
     if (!isPos) return base;
 
@@ -154,7 +174,12 @@ export default function ExchangeChart({
   }, [hist, tf, isPos, positionAmount, startTimestamp]);
 
   const display = useMemo(() => {
-    const v = live ?? (type === "line" ? data.line.at(-1)?.value : data.candles.at(-1)?.close) ?? null;
+    const v =
+      live ??
+      (type === "line"
+        ? data.line.at(-1)?.value
+        : data.candles.at(-1)?.close) ??
+      null;
     return v == null ? null : isPos ? v * positionAmount : v;
   }, [live, data, type, isPos, positionAmount]);
 
@@ -164,7 +189,7 @@ export default function ExchangeChart({
 
     const chart = createChart(el, {
       layout: {
-        background: { type: "solid", color: "#06131c" },
+        background: { type: ColorType.Solid, color: "#06131c" },
         textColor: "rgba(226,232,240,0.88)",
         fontFamily: "Inter, ui-sans-serif, system-ui",
         fontSize: 12,
@@ -176,15 +201,27 @@ export default function ExchangeChart({
       },
       crosshair: {
         mode: CrosshairMode.Normal,
-        vertLine: { color: "rgba(45,212,191,0.35)", width: 1, labelBackgroundColor: "#0ea5a5" },
-        horzLine: { color: "rgba(45,212,191,0.28)", width: 1, labelBackgroundColor: "#0ea5a5" },
+        vertLine: {
+          color: "rgba(45,212,191,0.35)",
+          width: 1,
+          labelBackgroundColor: "#0ea5a5",
+        },
+        horzLine: {
+          color: "rgba(45,212,191,0.28)",
+          width: 1,
+          labelBackgroundColor: "#0ea5a5",
+        },
       },
       rightPriceScale: {
         borderVisible: false,
         textColor: "rgba(226,232,240,0.75)",
-        scaleMargins: { top: 0.10, bottom: 0.25 },
+        scaleMargins: { top: 0.1, bottom: 0.25 },
       },
-      timeScale: { borderVisible: false, timeVisible: true, secondsVisible: false },
+      timeScale: {
+        borderVisible: false,
+        timeVisible: true,
+        secondsVisible: false,
+      },
       width: el.clientWidth || 800,
       height: compact ? 300 : 420,
       localization: { priceFormatter: (p: number) => p.toFixed(4) },
@@ -199,7 +236,9 @@ export default function ExchangeChart({
 
     return () => {
       ro.disconnect();
-      try { chart.remove(); } catch { }
+      try {
+        chart.remove();
+      } catch {}
       chartRef.current = null;
       priceRef.current = null;
       volRef.current = null;
@@ -242,38 +281,49 @@ export default function ExchangeChart({
     const priceData = type === "line" ? data.line : data.candles;
     if (!priceData.length) return;
 
-    if (priceRef.current) { try { chart.removeSeries(priceRef.current as any); } catch { } }
-    if (volRef.current) { try { chart.removeSeries(volRef.current as any); } catch { } }
+    if (priceRef.current) {
+      try {
+        chart.removeSeries(priceRef.current as any);
+      } catch {}
+    }
+    if (volRef.current) {
+      try {
+        chart.removeSeries(volRef.current as any);
+      } catch {}
+    }
     priceRef.current = null;
     volRef.current = null;
 
     const p =
       type === "line"
         ? chart.addSeries(AreaSeries, {
-          topColor: "rgba(45,212,191,0.25)",
-          bottomColor: "rgba(45,212,191,0.02)",
-          lineColor: "rgba(45,212,191,0.90)",
-          lineWidth: 2,
-          lastValueVisible: false,
-          priceLineVisible: false,
-          crosshairMarkerVisible: false,
-          priceFormat: { type: "price", precision: 4, minMove: 0.0001 },
-        })
+            topColor: "rgba(45,212,191,0.25)",
+            bottomColor: "rgba(45,212,191,0.02)",
+            lineColor: "rgba(45,212,191,0.90)",
+            lineWidth: 2,
+            lastValueVisible: false,
+            priceLineVisible: false,
+            crosshairMarkerVisible: false,
+            priceFormat: { type: "price", precision: 4, minMove: 0.0001 },
+          })
         : chart.addSeries(CandlestickSeries, {
-          upColor: "#22c55e",
-          downColor: "#ef4444",
-          borderUpColor: "#22c55e",
-          borderDownColor: "#ef4444",
-          wickUpColor: "#22c55e",
-          wickDownColor: "#ef4444",
-          lastValueVisible: false,
-          priceLineVisible: false,
-          crosshairMarkerVisible: false,
-          priceFormat: { type: "price", precision: 4, minMove: 0.0001 },
-        });
+            upColor: "#22c55e",
+            downColor: "#ef4444",
+            borderUpColor: "#22c55e",
+            borderDownColor: "#ef4444",
+            wickUpColor: "#22c55e",
+            wickDownColor: "#ef4444",
+            lastValueVisible: false,
+            priceLineVisible: false,
+            priceFormat: { type: "price", precision: 4, minMove: 0.0001 },
+          });
 
-    if (type === "line") (p as ISeriesApi<typeof AreaSeries>).setData(priceData as AreaData<UTCTimestamp>[]);
-    else (p as ISeriesApi<typeof CandlestickSeries>).setData(priceData as CandlestickData<UTCTimestamp>[]);
+    if (type === "line")
+      (p as ISeriesApi<"Area">).setData(priceData as AreaData<UTCTimestamp>[]);
+    else
+      (p as ISeriesApi<"Candlestick">).setData(
+        priceData as CandlestickData<UTCTimestamp>[],
+      );
 
     const v = chart.addSeries(HistogramSeries, {
       priceFormat: { type: "volume" },
@@ -281,12 +331,13 @@ export default function ExchangeChart({
       lastValueVisible: false,
       priceLineVisible: false,
     });
-    v.priceScale().applyOptions({ scaleMargins: { top: 0.80, bottom: 0.00 } });
+    v.priceScale().applyOptions({ scaleMargins: { top: 0.8, bottom: 0.0 } });
 
     const vols: HistogramData<UTCTimestamp>[] = data.candles.map((c) => ({
       time: c.time,
       value: Math.max(0, (c.high - c.low) * 100000),
-      color: c.close >= c.open ? "rgba(34,197,94,0.35)" : "rgba(239,68,68,0.35)",
+      color:
+        c.close >= c.open ? "rgba(34,197,94,0.35)" : "rgba(239,68,68,0.35)",
     }));
 
     v.setData(vols);
@@ -297,7 +348,10 @@ export default function ExchangeChart({
     chart.timeScale().fitContent();
 
     if (mode === "position" && onInitialValue) {
-      const first = type === "line" ? (priceData as any)[0]?.value : (priceData as any)[0]?.open;
+      const first =
+        type === "line"
+          ? (priceData as any)[0]?.value
+          : (priceData as any)[0]?.open;
       if (first != null && Number.isFinite(first)) onInitialValue(first);
     }
   }, [data, type, mode, onInitialValue]);
@@ -315,13 +369,23 @@ export default function ExchangeChart({
       w.onopen = () => {
         if (!alive || !w) return;
         setWs("live");
-        w.send(JSON.stringify({ event: "subscribe", pair: [pair.ws], subscription: { name: "ticker" } }));
+        w.send(
+          JSON.stringify({
+            event: "subscribe",
+            pair: [pair.ws],
+            subscription: { name: "ticker" },
+          }),
+        );
       };
 
       w.onmessage = (ev) => {
         if (!alive) return;
         let m: any;
-        try { m = JSON.parse(ev.data); } catch { return; }
+        try {
+          m = JSON.parse(ev.data);
+        } catch {
+          return;
+        }
         if (!Array.isArray(m)) return;
         const [, payload, , pairLabel] = m;
         if (pairLabel !== pair.ws) return;
@@ -332,7 +396,9 @@ export default function ExchangeChart({
         setHist((prev) => {
           const now = Math.floor(Date.now() / 1000) as UTCTimestamp;
 
-          const line = [...prev.line, { time: now, value: last }].slice(-MAX_POINTS);
+          const line = [...prev.line, { time: now, value: last }].slice(
+            -MAX_POINTS,
+          );
 
           const candles = [...prev.candles];
           const lc = candles[candles.length - 1];
@@ -344,7 +410,13 @@ export default function ExchangeChart({
               close: last,
             };
           } else {
-            candles.push({ time: now, open: last, high: last, low: last, close: last });
+            candles.push({
+              time: now,
+              open: last,
+              high: last,
+              low: last,
+              close: last,
+            });
             if (candles.length > MAX_POINTS) candles.shift();
           }
 
@@ -376,7 +448,7 @@ export default function ExchangeChart({
           w.onclose = null;
           w.onerror = null;
           if (w.readyState === WebSocket.OPEN) w.close();
-        } catch { }
+        } catch {}
       }
     };
   }, [pair.ws]);
@@ -398,7 +470,8 @@ export default function ExchangeChart({
           gap: 16,
           padding: "14px 16px",
           borderBottom: "1px solid rgba(148,163,184,0.10)",
-          background: "linear-gradient(180deg, rgba(6,19,28,1), rgba(6,19,28,0.96))",
+          background:
+            "linear-gradient(180deg, rgba(6,19,28,1), rgba(6,19,28,0.96))",
           flexWrap: "wrap",
         }}
       >
@@ -406,23 +479,60 @@ export default function ExchangeChart({
           <div style={{ fontSize: 12, color: "rgba(226,232,240,0.65)" }}>
             {mode === "position" ? "Live position value" : "Live Rate"}
           </div>
-          <div style={{ marginTop: 2, fontSize: 18, fontWeight: 700, color: "rgba(226,232,240,0.92)" }}>
-            {mode === "position" ? positionLabel || "Position value" : pair.label}
+          <div
+            style={{
+              marginTop: 2,
+              fontSize: 18,
+              fontWeight: 700,
+              color: "rgba(226,232,240,0.92)",
+            }}
+          >
+            {mode === "position"
+              ? positionLabel || "Position value"
+              : pair.label}
           </div>
           {display != null && (
-            <div style={{ marginTop: 10, fontSize: 22, fontWeight: 800, color: "#e2e8f0" }}>
+            <div
+              style={{
+                marginTop: 10,
+                fontSize: 22,
+                fontWeight: 800,
+                color: "#e2e8f0",
+              }}
+            >
               {display.toFixed(4)}{" "}
-              <span style={{ marginLeft: 8, fontSize: 12, color: "rgba(148,163,184,0.85)" }}>
-                {ws === "live" ? "Live" : ws === "connecting" ? "Connecting…" : "Reconnecting…"}
+              <span
+                style={{
+                  marginLeft: 8,
+                  fontSize: 12,
+                  color: "rgba(148,163,184,0.85)",
+                }}
+              >
+                {ws === "live"
+                  ? "Live"
+                  : ws === "connecting"
+                    ? "Connecting…"
+                    : "Reconnecting…"}
               </span>
             </div>
           )}
         </div>
 
-        <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
+        <div
+          style={{
+            display: "flex",
+            gap: 10,
+            alignItems: "center",
+            flexWrap: "wrap",
+          }}
+        >
           <div style={pillWrap}>
             {PAIRS.map((p) => (
-              <button key={p.k} onClick={() => setPairKey(p.k)} style={pill(p.k === pairKey)}>
+              <button
+                key={p.k}
+                onClick={() => setPairKey(p.k)}
+                style={pill(p.k === pairKey)}
+              >
                 {p.label}
               </button>
             ))}
@@ -437,10 +547,16 @@ export default function ExchangeChart({
           </div>
 
           <div style={pillWrap}>
-            <button onClick={() => setType("candles")} style={pill(type === "candles")}>
+            <button
+              onClick={() => setType("candles")}
+              style={pill(type === "candles")}
+            >
               Candles
             </button>
-            <button onClick={() => setType("line")} style={pill(type === "line")}>
+            <button
+              onClick={() => setType("line")}
+              style={pill(type === "line")}
+            >
               Line
             </button>
           </div>
@@ -448,8 +564,22 @@ export default function ExchangeChart({
       </div>
 
       <div style={{ padding: "10px 10px 12px" }}>
-        {loading && <div style={{ margin: "8px 6px", color: "rgba(226,232,240,0.70)", fontSize: 12 }}>Loading…</div>}
-        {err && <div style={{ margin: "8px 6px", color: "#ef4444", fontSize: 12 }}>{err}</div>}
+        {loading && (
+          <div
+            style={{
+              margin: "8px 6px",
+              color: "rgba(226,232,240,0.70)",
+              fontSize: 12,
+            }}
+          >
+            Loading…
+          </div>
+        )}
+        {err && (
+          <div style={{ margin: "8px 6px", color: "#ef4444", fontSize: 12 }}>
+            {err}
+          </div>
+        )}
         <div ref={boxRef} style={{ height: compact ? 300 : 420 }} />
       </div>
     </div>

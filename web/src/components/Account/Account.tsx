@@ -1,5 +1,9 @@
 import { useMemo, useState } from "react";
-import { MdArrowDownward, MdArrowUpward, MdOutlineArrowOutward } from "react-icons/md";
+import {
+  MdArrowDownward,
+  MdArrowUpward,
+  MdOutlineArrowOutward,
+} from "react-icons/md";
 import { useActiveWallet, useConnectModal } from "thirdweb/react";
 import client from "../../util/client";
 
@@ -21,7 +25,8 @@ const TOKEN_CATALOG: Array<{ symbol: string; address: `0x${string}` }> = [
   { symbol: "BTC", address: "0xBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" },
 ];
 
-const formatAmount = (x: number) => x.toLocaleString(undefined, { maximumFractionDigits: 6 });
+const formatAmount = (x: number) =>
+  x.toLocaleString(undefined, { maximumFractionDigits: 6 });
 
 export default function Account() {
   const wallet = useActiveWallet();
@@ -38,7 +43,8 @@ export default function Account() {
         <div className={s.connectGate}>
           <h2 className={s.connectTitle}>Connect your wallet</h2>
           <p className={s.connectSub}>
-            You’ll need to connect a crypto wallet before you can deposit, withdraw, or view your yields and balances.
+            You’ll need to connect a crypto wallet before you can deposit,
+            withdraw, or view your yields and balances.
           </p>
 
           <Button
@@ -84,10 +90,10 @@ function AccountAuthed() {
   const [selectedSymbol, setSelectedSymbol] = useState(TOKEN_CATALOG[0].symbol);
   const [amountStr, setAmountStr] = useState("0");
 
-  const totalUsdcValue = useMemo(
-    () => vaultHoldings.reduce((sum, t) => sum + t.amount, 0),
-    [vaultHoldings],
-  );
+  //  const totalUsdcValue = useMemo(
+  //    () => vaultHoldings.reduce((sum, t) => sum + t.amount, 0),
+  //    [vaultHoldings],
+  //  );
 
   const tokensForDisplay = useMemo(
     () =>
@@ -130,7 +136,11 @@ function AccountAuthed() {
         if (idx >= 0) {
           next[idx] = { ...next[idx], amount: next[idx].amount + amt };
         } else {
-          next.push({ symbol: tokenMeta.symbol, address: tokenMeta.address, amount: amt });
+          next.push({
+            symbol: tokenMeta.symbol,
+            address: tokenMeta.address,
+            amount: amt,
+          });
         }
         return next;
       }
@@ -160,12 +170,15 @@ function AccountAuthed() {
     setAmountStr(e.target.value);
   };
 
-  const modalTitle = mode === "deposit" ? "Deposit to Vault" : "Withdraw from Vault";
-  const actionLabel = mode === "deposit" ? "Confirm Deposit" : "Confirm Withdraw";
+  const modalTitle =
+    mode === "deposit" ? "Deposit to Vault" : "Withdraw from Vault";
+  const actionLabel =
+    mode === "deposit" ? "Confirm Deposit" : "Confirm Withdraw";
 
   const depositLabel = "Deposit";
   const withdrawLabel = "Withdraw";
-  const isAmountInvalid = !Number.isFinite(Number(amountStr)) || Number(amountStr) <= 0;
+  const isAmountInvalid =
+    !Number.isFinite(Number(amountStr)) || Number(amountStr) <= 0;
 
   return (
     <div className={s.container}>
@@ -194,11 +207,17 @@ function AccountAuthed() {
         </div>
 
         <div className={s.right}>
-          <div style={{ display: "flex", flexDirection: "column", gap: "16px", minHeight: 0 }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "16px",
+              minHeight: 0,
+            }}
+          >
             <VaultBalances
               isLoading={isLoading}
               tokens={tokensForDisplay}
-              totalValue={totalUsdcValue}
               onRefresh={handleRefresh}
             />
 
@@ -224,14 +243,22 @@ function AccountAuthed() {
           <div className={s.modalCard} onMouseDown={(e) => e.stopPropagation()}>
             <div className={s.modalHeader}>
               <h3 className={s.modalTitle}>{modalTitle}</h3>
-              <button className={s.iconBtn} onClick={handleCloseModal} aria-label="Close">
+              <button
+                className={s.iconBtn}
+                onClick={handleCloseModal}
+                aria-label="Close"
+              >
                 ✕
               </button>
             </div>
 
             <div className={s.formRow}>
               <label className={s.label}>Token</label>
-              <select className={s.select} value={selectedSymbol} onChange={handleSymbolChange}>
+              <select
+                className={s.select}
+                value={selectedSymbol}
+                onChange={handleSymbolChange}
+              >
                 {TOKEN_CATALOG.map((t) => (
                   <option key={t.symbol} value={t.symbol}>
                     {t.symbol}
@@ -264,7 +291,9 @@ function AccountAuthed() {
               </button>
             </div>
 
-            <div className={s.modalHint}>Mock mode: updates UI only (no smart contract hooked up yet).</div>
+            <div className={s.modalHint}>
+              Mock mode: updates UI only (no smart contract hooked up yet).
+            </div>
           </div>
         </div>
       )}
