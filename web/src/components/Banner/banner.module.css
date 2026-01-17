@@ -5,9 +5,7 @@
   justify-content: end;
   gap: 0.5rem;
   padding: 16px 24px;
-  border-bottom: 0.1px;
-  border-color: color-mix(in srgb, var(--accent-green) 30%, transparent);
-  border-style: solid;
+  border-bottom: 0.1px solid color-mix(in srgb, var(--accent-green) 30%, transparent);
 }
 
 .navWrapper {

@@ -1,3 +1,4 @@
 .rootClassNameOverride {
-  color: yellow;
+  font-size: 28px;
+  align-self: flex-start;
 }

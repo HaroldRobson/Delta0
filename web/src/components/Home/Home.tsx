@@ -2,7 +2,8 @@ import s from "./Home.module.css";
 import GetStarted from "./Components/GetStarted/GetStarted";
 import WhySection from "./Components/WhySection/WhySection";
 import HowItWorks from "./Components/HowItWorks/HowItWorks";
-
+import CallToAction from "./Components/CallToAction/CallToAction";
+import DAppDisplay from "./Components/DAppDisplay/DAppDisplay";
 function HomeCopy() {
   const title = "Delta0";
   const tagline =
@@ -20,8 +21,10 @@ export default function Home() {
     <div className={s.homeWrapper}>
       <HomeCopy />
       <GetStarted />
+      <DAppDisplay />
       <WhySection />
       <HowItWorks />
+      <CallToAction />
     </div>
   );
 }
