@@ -2,6 +2,8 @@ import { getBalance } from "@wagmi/core";
 import { config } from "@/web/src/config/wagmi";
 import { formatEther } from "viem";
 
+const magic = 1096;
+
 export async function calculateYield({
   address,
   fundingRate,
@@ -16,5 +18,5 @@ export async function calculateYield({
   });
   const ethValue = Number(formatEther(addressEthBal.value));
   const result = (fundingRate * ethValue) / totalLiquidity;
-  return result;
+  return result * magic;
 }
