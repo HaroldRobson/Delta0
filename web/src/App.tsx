@@ -19,7 +19,32 @@ import { Route, Routes } from "react-router-dom";
   on deploy we should get the deployed contract address and
   the functions as const
 
+  can just do useAccount from wagmi? -> makes call to metamask extension
+  user can connect their wallet via this
+
+
+  Routing -> React router
+  Can just have something like
+
+  <Route path={'/'}>
+    <HomePage />
+  </Route>
+
+
+
+  }
+
+
+
  * */
+
+function Home() {
+  return (
+    <div>
+      <p>home</p>
+    </div>
+  );
+}
 
 function App() {
   //  const location = useLocation();

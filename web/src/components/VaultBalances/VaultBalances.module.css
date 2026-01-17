@@ -1,49 +1,60 @@
 .card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  background: #06131c;
   border-radius: 16px;
-  padding: 16px;
+  padding: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 .header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
   gap: 12px;
+  align-items: center;
   margin-bottom: 12px;
 }
 
-.title {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 700;
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
 }
 
-.subtitle {
-  margin: 4px 0 0 0;
-  font-size: 13px;
-  opacity: 0.75;
+.title {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.subTitle {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.totalValue {
+  font-size: 18px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.totalUnit {
+  opacity: 0.8;
+  font-weight: 700;
+  margin-left: 4px;
 }
 
 .refreshBtn {
-  padding: 8px 12px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(148, 163, 184, 0.08);
+  color: inherit;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: transparent;
+  padding: 8px 10px;
   cursor: pointer;
 }
 
 .refreshBtn:disabled {
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: not-allowed;
-}
-
-.error {
-  padding: 10px 12px;
-  border-radius: 12px;
-  background: rgba(255, 80, 80, 0.12);
-  border: 1px solid rgba(255, 80, 80, 0.22);
-  font-size: 13px;
 }
 
 .list {
@@ -56,53 +67,39 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
-  padding: 12px;
+  padding: 10px 10px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(148, 163, 184, 0.10);
+  background: rgba(148, 163, 184, 0.04);
 }
 
 .left {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
+  min-width: 0;
 }
 
-.symbol {
+.sym {
   font-weight: 700;
 }
 
-.address {
+.addr {
   font-size: 12px;
   opacity: 0.7;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 340px;
 }
 
-.amount {
-  font-variant-numeric: tabular-nums;
-  font-weight: 700;
+.amt {
+  font-weight: 800;
+  white-space: nowrap;
 }
 
 .empty {
-  padding: 14px;
-  border-radius: 12px;
-  border: 1px dashed rgba(255, 255, 255, 0.16);
-  opacity: 0.85;
+  padding: 14px 10px;
+  opacity: 0.7;
   font-size: 13px;
 }
-
-.emptyHint {
-  margin-top: 6px;
-  opacity: 0.7;
-  font-size: 12px;
-}
-
-/* skeleton */
-.skelLineLg, .skelLineMd, .skelLineSm {
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.skelLineLg { width: 100px; height: 14px; }
-.skelLineMd { width: 80px; height: 14px; }
-.skelLineSm { width: 140px; height: 12px; opacity: 0.7; }
