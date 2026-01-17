@@ -5,12 +5,23 @@
   align-items: center;
   max-width: 50%;
   text-align: center;
+  margin-top: 80px;
 }
 
 .heading {
-  font-size: 56px;
+  margin: 0;
+  font-size: 48px;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  font-weight: 760;
 }
 
 .subheading {
   font-size: 28px;
+}
+
+@media (max-width: 980px) {
+  .heading {
+    font-size: 38px;
+  }
 }

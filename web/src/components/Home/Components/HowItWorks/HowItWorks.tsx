@@ -1,54 +1,73 @@
-import { FeatureBox } from "@components/FeatureGrid/FeatureBox";
-import { FeatureGrid } from "@components/FeatureGrid/FeatureGrid";
-import StepCard, { type StepCardProps } from "../StepCard/StepCard";
 import s from "./HowItWorks.module.css";
 
 const stepImage = "/stepplaceholder.png";
 
+type Step = {
+  step: number;
+  title: string;
+  description: string;
+};
+
 export default function HowItWorks() {
-  const steps: Array<StepCardProps> = [
+  const steps: Step[] = [
     {
       step: 1,
-      image: stepImage,
       title: "Connect your wallet",
-      description: "Click get started to connect a wallet of your choice.",
+      description: "Click get started to connect a wallet of your choice in seconds.",
     },
     {
       step: 2,
-      image: stepImage,
       title: "Deposit your crypto",
-      description: "Select a token of your choosing.",
+      description: "Choose an asset and deposit into your vault.",
     },
     {
       step: 3,
-      image: stepImage,
       title: "Earn",
       description: "Relax. We'll take care of the rest.",
     },
   ];
+
   return (
-    <div style={{ alignSelf: "start", width: "100%" }}>
-      <section>
-        <FeatureGrid layout={["2fr", "1fr"]}>
-          <FeatureBox
-            title="How It Works"
-            description="Turn any coin into a stable coin in 3? clicks"
-            rootClassNames={s.rootClassNameOverride}
-          />
-          <FeatureBox title="" rootClassNames={s.rootClassNameOverride} />
-        </FeatureGrid>
-        <FeatureGrid>
-          {steps.map((step, i) => (
-            <StepCard
-              key={i}
-              step={step.step}
-              image={step.image}
-              title={step.title}
-              description={step.description}
-            />
+    <section className={s.section}>
+      <div className={s.bgGlow} />
+
+      <div className={s.header}>
+        <h2 className={s.title}>How it works?</h2>
+        <p className={s.subtitle}>
+          Turn any coin into a stable coin in 3 clicks; embedded throughout the
+          Hyperliquid ecosystem.
+        </p>
+      </div>
+
+      <div className={s.timeline}>
+        <div className={s.line} />
+        <div className={s.cards}>
+          {steps.map((x) => (
+            <article key={x.step} className={s.card}>
+              <div className={s.cardInner}>
+                <div className={s.iconStage}>
+                  <div
+                    className={[
+                      s.iconWrap,
+                      x.step === 2 ? s.ring1 : "",
+                      x.step === 3 ? s.ring2 : "",
+                    ].join(" ")}
+                  >
+                    <div className={s.iconCircle}>
+                      <img className={s.iconImg} src={stepImage} alt="" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className={s.meta}>
+                  <div className={s.cardTitle}>{x.title}</div>
+                  <p className={s.desc}>{x.description}</p>
+                </div>
+              </div>
+            </article>
           ))}
-        </FeatureGrid>
-      </section>
-    </div>
+        </div>
+      </div>
+    </section>
   );
 }
