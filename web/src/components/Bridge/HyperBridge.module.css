@@ -1,0 +1,87 @@
+.container {
+  padding: 24px;
+  min-height: calc(100vh - 80px);
+}
+
+.title {
+  margin: 0 0 24px 0;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.subtitle {
+  margin: -16px 0 24px 0;
+  color: rgba(148, 163, 184, 0.95);
+  font-size: 14px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(420px, 500px) 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.widgetColumn {
+  /* Allow widget to expand naturally without clipping */
+  min-width: 0;
+  overflow: visible;
+}
+
+/* Override LI.FI widget internal height constraints */
+.widgetColumn :global([class*="MuiBox-root"]),
+.widgetColumn :global([class*="WidgetContainer"]),
+.widgetColumn :global(> div),
+.widgetColumn :global(> div > div) {
+  max-height: none !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+.infoColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+
+.errorMessage {
+  margin-bottom: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+  font-size: 13px;
+}
+
+
+/* Connect Gate */
+.connectGate {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.connectTitle {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.connectSub {
+  margin: 0;
+  max-width: 520px;
+  color: rgba(148, 163, 184, 0.95);
+}

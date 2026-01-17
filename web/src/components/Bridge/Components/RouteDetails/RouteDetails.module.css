@@ -1,0 +1,79 @@
+.routeContainer {
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.routeTitle {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.routeEmpty {
+  margin: 0;
+  color: rgba(148, 163, 184, 0.7);
+  font-size: 14px;
+}
+
+.routeGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.routeItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.routeLabel {
+  font-size: 12px;
+  color: rgba(148, 163, 184, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.routeValue {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.routeChain {
+  font-size: 13px;
+  color: rgba(148, 163, 184, 0.8);
+}
+
+.routeArrow {
+  font-size: 18px;
+  color: rgba(148, 163, 184, 0.4);
+  text-align: center;
+  padding: 4px 0;
+}
+
+.routeStats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.routeStat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.routeStatLabel {
+  font-size: 12px;
+  color: rgba(148, 163, 184, 0.6);
+}
+
+.routeStatValue {
+  font-size: 16px;
+  font-weight: 600;
+}

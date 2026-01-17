@@ -1,0 +1,178 @@
+.progressContainer {
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.progressTitle {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.progressEmpty,
+.progressLoading {
+  margin: 0;
+  color: rgba(148, 163, 184, 0.7);
+  font-size: 14px;
+}
+
+.stepConnector {
+  width: 2px;
+  flex: 1;
+  min-height: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 4px 0;
+}
+
+.stepContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.stepHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+
+.stepTool {
+  font-size: 12px;
+  color: rgba(148, 163, 184, 0.7);
+}
+
+.stepDetails {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+
+.stepToken {
+  font-weight: 500;
+}
+
+.stepArrow {
+  color: rgba(148, 163, 184, 0.5);
+}
+
+.txLink {
+  font-size: 12px;
+  color: #a78bfa;
+  text-decoration: none;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+.txLink:hover {
+  text-decoration: underline;
+}
+
+.stepChains {
+  font-size: 12px;
+  color: rgba(148, 163, 184, 0.6);
+}
+
+.stepType {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.statusBadgeCompleted {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgba(0, 200, 83, 0.15);
+  color: #00c853;
+}
+
+.statusBadgeFailed {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.statusBadgeExecuting {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgba(124, 58, 237, 0.15);
+  color: #a78bfa;
+}
+
+.stepsList {
+  display: flex;
+  flex-direction: column;
+}
+
+.stepItem {
+  display: flex;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.stepIconWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 24px;
+}
+
+.stepIconPending,
+.stepIconActive,
+.stepIconCompleted,
+.stepIconFailed {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.stepIconPending {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.stepIconActive {
+  background: rgba(124, 58, 237, 0.2);
+  color: #a78bfa;
+  animation: pulse 1.5s infinite;
+}
+
+.stepIconCompleted {
+  background: rgba(0, 200, 83, 0.2);
+  color: #00c853;
+}
+
+.stepIconFailed {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
