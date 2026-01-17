@@ -85,9 +85,9 @@ export default function Bridge() {
     return (
       <div className={s.container}>
         <div className={s.connectGate}>
-          <h1 className={s.connectTitle}>Bridge to HyperEVM</h1>
+          <h1 className={s.connectTitle}>Bridge your funds</h1>
           <p className={s.connectSub}>
-            Connect your wallet to bridge tokens from any chain to HyperEVM.
+            Connect your wallet to bridge tokens from any chain.
           </p>
           <ConnectButton client={client} />
         </div>
@@ -97,10 +97,8 @@ export default function Bridge() {
 
   return (
     <div className={s.container}>
-      <h1 className={s.title}>Bridge to HyperEVM</h1>
-      <p className={s.subtitle}>
-        Bridge tokens from any chain to HyperEVM (Chain ID 999)
-      </p>
+      <h1 className={s.title}>Bridge your funds</h1>
+      <p className={s.subtitle}>Bridge tokens from any chain.</p>
       <HyperBridgeContent />
     </div>
   );

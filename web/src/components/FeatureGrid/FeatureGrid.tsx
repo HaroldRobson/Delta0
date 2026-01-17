@@ -11,22 +11,42 @@ type FeatureGridProps = {
    * - undefined: auto-detect from children count (equal widths)
    */
   layout?: number | string[];
+  /**
+   * Direction of the grid layout.
+   * - "horizontal": items arranged in columns (default)
+   * - "vertical": items stacked in rows
+   */
+  direction?: "horizontal" | "vertical";
+  /**
+   * Hide the horizontal and vertical divider lines.
+   */
+  hideLines?: boolean;
 };
 
-export function FeatureGrid({ children, layout }: FeatureGridProps) {
+export function FeatureGrid({
+  children,
+  layout,
+  direction = "horizontal",
+  hideLines = false,
+}: FeatureGridProps) {
   const childArray = Children.toArray(children);
+  const isVertical = direction === "vertical";
 
-  let gridTemplateColumns: string;
+  let gridTemplate: string;
   if (Array.isArray(layout)) {
-    gridTemplateColumns = layout.join(" ");
+    gridTemplate = layout.join(" ");
   } else {
-    const columnCount = layout ?? childArray.length;
-    gridTemplateColumns = `repeat(${columnCount}, 1fr)`;
+    const count = layout ?? childArray.length;
+    gridTemplate = `repeat(${count}, 1fr)`;
   }
 
+  const gridStyle = isVertical
+    ? { gridTemplateRows: gridTemplate }
+    : { gridTemplateColumns: gridTemplate };
+
   return (
-    <div className={s.gridWrapper}>
-      <div className={s.grid} style={{ gridTemplateColumns }}>
+    <div className={s.gridWrapper} data-direction={direction} data-hide-lines={hideLines || undefined}>
+      <div className={s.grid} style={gridStyle}>
         {childArray.map((child, index) => (
           <div
             key={index}

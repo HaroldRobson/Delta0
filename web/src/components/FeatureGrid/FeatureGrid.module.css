@@ -28,23 +28,56 @@
 .grid {
   display: grid;
   position: relative;
+  align-items: stretch;
+  gap: 4px;
 }
 
 .gridItem {
   position: relative;
 }
 
-/* Vertical dividers that extend past content */
+/* Vertical dividers for horizontal layout */
 .gridItem::after {
   content: "";
   position: absolute;
   top: 0px;
   bottom: -20px;
-  right: 0;
+  right: 0px;
   width: 1px;
   background: rgba(255, 255, 255, 0.1);
 }
 
 .gridItem:last-child::after {
+  display: none;
+}
+
+/* Vertical layout styles */
+.gridWrapper[data-direction="vertical"] {
+  height: 100%;
+}
+
+.gridWrapper[data-direction="vertical"] .grid {
+  height: 100%;
+}
+
+.gridWrapper[data-direction="vertical"] .gridItem {
+  display: flex;
+  align-items: center;
+}
+
+/* Vertical layout: horizontal dividers between items */
+.gridWrapper[data-direction="vertical"] .gridItem::after {
+  top: auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: 1px;
+}
+
+/* Hide all lines when hideLines prop is true */
+.gridWrapper[data-hide-lines]::before,
+.gridWrapper[data-hide-lines]::after,
+.gridWrapper[data-hide-lines] .gridItem::after {
   display: none;
 }

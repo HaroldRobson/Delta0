@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useWidgetEvents, WidgetEvent } from "@lifi/widget";
 import type { LiFiStep, WidgetEvents } from "@lifi/widget";
 import type { BridgeState, BridgeStep, RouteInfo, StepStatus } from "../types";
-import { getChainName } from "@util/util";
+import { getChainNameFromId } from "@util/util";
 
 // Widget event types from WidgetEvents
 // Docs: https://docs.li.fi/widget/widget-events#available-events
@@ -38,8 +38,8 @@ function extractRouteInfo(route: Route): RouteInfo {
     toAmount: route.toAmount,
     fromToken: route.fromToken?.symbol || "Unknown",
     toToken: route.toToken?.symbol || "Unknown",
-    fromChain: getChainName(route.fromChainId),
-    toChain: getChainName(route.toChainId),
+    fromChain: getChainNameFromId(route.fromChainId),
+    toChain: getChainNameFromId(route.toChainId),
     estimatedTime: steps.reduce(
       (acc: number, step: RouteStep) =>
         acc + (step.estimate?.executionDuration || 0),
@@ -60,8 +60,8 @@ function extractStepsFromRoute(route: Route): BridgeStep[] {
         id: `${step.id}-approval`,
         type: "approval",
         tool: step.tool,
-        fromChain: getChainName(step.action.fromChainId),
-        toChain: getChainName(step.action.fromChainId),
+        fromChain: getChainNameFromId(step.action.fromChainId),
+        toChain: getChainNameFromId(step.action.fromChainId),
         fromToken: step.action.fromToken.symbol,
         toToken: step.action.fromToken.symbol,
         status: "pending",
@@ -78,8 +78,8 @@ function extractStepsFromRoute(route: Route): BridgeStep[] {
             ? "bridge"
             : "unknown",
       tool: step.tool,
-      fromChain: getChainName(step.action.fromChainId),
-      toChain: getChainName(step.action.toChainId),
+      fromChain: getChainNameFromId(step.action.fromChainId),
+      toChain: getChainNameFromId(step.action.toChainId),
       fromToken: step.action.fromToken.symbol,
       toToken: step.action.toToken.symbol,
       status: "pending",

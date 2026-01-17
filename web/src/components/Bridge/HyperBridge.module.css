@@ -34,16 +34,6 @@
   overflow: visible;
 }
 
-/* Override LI.FI widget internal height constraints */
-.widgetColumn :global([class*="MuiBox-root"]),
-.widgetColumn :global([class*="WidgetContainer"]),
-.widgetColumn :global(> div),
-.widgetColumn :global(> div > div) {
-  max-height: none !important;
-  height: auto !important;
-  overflow: visible !important;
-}
-
 .infoColumn {
   display: flex;
   flex-direction: column;

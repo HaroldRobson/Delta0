@@ -1,12 +1,10 @@
 import s from "./WhySection.module.css";
 import { FeatureGrid } from "@components/FeatureGrid/FeatureGrid";
-import { type FeatureBoxProps, FeatureBox } from "@components/FeatureGrid/FeatureBox";
 import {
-  MdSecurity,
-  MdSavings,
-  MdVerified,
-  MdSwapHoriz,
-} from "react-icons/md";
+  type FeatureBoxProps,
+  FeatureBox,
+} from "@components/FeatureGrid/FeatureBox";
+import { MdSecurity, MdSavings, MdVerified, MdSwapHoriz } from "react-icons/md";
 
 export default function WhySection() {
   const featureBoxes: Array<FeatureBoxProps> = [
@@ -19,8 +17,7 @@ export default function WhySection() {
     {
       icon: <MdSavings />,
       title: "Yield Generation",
-      description:
-        "Consistent yield generation on current balances.",
+      description: "Consistent yield generation on current balances.",
     },
     {
       icon: <MdVerified />,
@@ -47,7 +44,7 @@ export default function WhySection() {
         </p>
       </div>
 
-      <FeatureGrid layout={featureBoxes.length}>
+      <FeatureGrid layout={featureBoxes.length} hideLines>
         {featureBoxes.map((box, idx) => (
           <div key={idx} className={s.card}>
             <FeatureBox

@@ -3,6 +3,7 @@
   width: 100%;
   padding: 88px 0 120px;
   overflow: hidden;
+  gap: 8px
 }
 
 .bgGlow {
@@ -65,7 +66,7 @@
   background: rgba(255, 255, 255, 0.055);
 }
 
-.card > * {
+.card>* {
   flex: 1;
   display: flex;
   flex-direction: column;

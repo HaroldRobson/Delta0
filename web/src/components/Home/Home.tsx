@@ -4,6 +4,7 @@ import WhySection from "./Components/WhySection/WhySection";
 import HowItWorks from "./Components/HowItWorks/HowItWorks";
 import CallToAction from "./Components/CallToAction/CallToAction";
 import DAppDisplay from "./Components/DAppDisplay/DAppDisplay";
+import SwapValueProp from "./Components/SwapValueProp/SwapValueProp";
 
 function HomeCopy() {
   const title = "Seamless DeFi, Simplified";
@@ -24,6 +25,7 @@ export default function Home() {
       <DAppDisplay />
       <WhySection />
       <HowItWorks />
+      <SwapValueProp />
       <CallToAction />
     </div>
   );

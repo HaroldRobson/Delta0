@@ -1,29 +1,76 @@
-import { type WidgetConfig } from "@lifi/widget";
-import { HYPER_EVM, INTEGRATOR } from "../constants/hyperbridge";
+import { type WidgetConfig, ChainId, type BaseToken } from "@lifi/widget";
+import { INTEGRATOR } from "../constants/hyperbridge";
+//import { TestnetChainId } from "../constants/chains";
+import TokenNameAddressMapping from "@constants/tokens";
+import TokenNameAdressMapping from "@constants/tokens";
+/*
+ *
+ * To chains:
+ *  - HYPER_EVM (mainnet test net), usol, eth, ubtc,
+ *  -
+ * */
+
+const tokenWhitelist: BaseToken[] = [
+  {
+    address: TokenNameAddressMapping[ChainId.HYP].UETH,
+    chainId: ChainId.HYP,
+  },
+  {
+    address: TokenNameAddressMapping[ChainId.HYP].USOL,
+    chainId: ChainId.HYP,
+  },
+  {
+    address: TokenNameAdressMapping[ChainId.HYP].UBTC,
+    chainId: ChainId.HYP,
+  },
+  {
+    address: TokenNameAdressMapping[ChainId.HYP].WHYPE,
+    chainId: ChainId.HYP,
+  },
+];
 
 // Docs: https://docs.li.fi/widget/configure-widget
 const widgetConfig: WidgetConfig = {
   integrator: INTEGRATOR,
-  toChain: HYPER_EVM.chainId,
+  toChain: ChainId.HYP,
   chains: {
-    deny: [], // Allow all chains as source
+    allow: [],
+    deny: [],
+  },
+  tokens: {
+    // allow to eth, btc, sol on HYP
+    to: {
+      allow: tokenWhitelist,
+    },
+    from: {
+      allow: [...tokenWhitelist],
+    },
   },
   // Docs: https://docs.li.fi/widget/configuration/widget-configuration#hidden-ui
-  // hiddenUI: ["toAddress"], // Hide toAddress since we auto-set it
   appearance: "dark",
-  variant: "wide",
+  variant: "compact",
   // https://docs.li.fi/widget/select-widget-variants
   subvariant: "default",
   // Docs: https://docs.li.fi/widget/configure-widget/widget-configuration#theme
   theme: {
     palette: {
-      primary: { main: "#00c853" },
-      secondary: { main: "#7c3aed" },
+      primary: { main: "#78FFDC" },
+      secondary: { main: "#0d1210" },
+      background: {
+        default: "#070b09",
+        paper: "#0d1210",
+      },
+      text: {
+        primary: "#fafafa",
+        secondary: "#8a8d8b",
+      },
+    },
+    typography: {
+      fontFamily: "'Unbounded', system-ui, -apple-system, sans-serif",
     },
     container: {
       boxShadow: "none",
       borderRadius: "16px",
-      // Remove default max height to allow full expansion
       maxHeight: "none",
       height: "auto",
     },

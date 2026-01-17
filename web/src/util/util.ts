@@ -1,7 +1,8 @@
 import { getBalance } from "@wagmi/core";
 import { formatEther } from "viem";
 import { config } from "../config/wagmi";
-
+import { ChainId } from "@lifi/widget";
+import { TestnetChainId } from "@constants/chains";
 const magic = 1096;
 
 export async function calculateYield({
@@ -21,16 +22,28 @@ export async function calculateYield({
   return result * magic;
 }
 
-export function getChainName(chainId: number): string {
-  const chainNames: Record<number, string> = {
-    1: "Ethereum",
-    10: "Optimism",
-    56: "BNB Chain",
-    137: "Polygon",
-    42161: "Arbitrum",
-    43114: "Avalanche",
-    999: "HyperEVM",
-    1151111081099710: "Solana",
-  };
-  return chainNames[chainId] || `Chain ${chainId}`;
+export function getChainNameFromId(chainId: ChainId | TestnetChainId): string {
+  const chainIdNameMapping: Partial<Record<ChainId | TestnetChainId, string>> =
+    {
+      [ChainId.ETH]: "Ethereum",
+      [ChainId.POL]: "Polygon",
+      [ChainId.BSC]: "BNB Chain",
+      [ChainId.ARB]: "Arbitrum",
+      [ChainId.OPT]: "Optimism",
+      [ChainId.BAS]: "Base",
+      [ChainId.AVA]: "Avalanche",
+      [ChainId.LNA]: "Linea",
+      [ChainId.ERA]: "zkSync Era",
+      [ChainId.SCL]: "Scroll",
+      [ChainId.BLS]: "Blast",
+      [ChainId.MNT]: "Mantle",
+      [ChainId.DAI]: "Gnosis",
+      [ChainId.HYP]: "HyperEVM",
+      [ChainId.SOL]: "Solana",
+      [ChainId.BTC]: "Bitcoin",
+      [ChainId.SUI]: "Sui",
+      [TestnetChainId.HYPE_T]: "Hyperliquid EVM Testnet",
+      [TestnetChainId.SEP]: "Sepolia ETH Testnet",
+    };
+  return chainIdNameMapping[chainId] || `Chain ${chainId}`;
 }
