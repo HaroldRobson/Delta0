@@ -27,8 +27,7 @@ export default function SwapValueProp() {
   return (
     <div style={{ alignSelf: "start", width: "100%" }}>
       <section>
-        <FeatureGrid layout={["1fr", "4fr", "4fr", "1fr"]}>
-          <div></div>
+        <FeatureGrid layout={["1fr", "1fr"]}>
           {/**/}
           <FeatureGrid direction="vertical" layout={["3fr", "1fr"]}>
             <FeatureBox title={heading} description={subheading}></FeatureBox>
@@ -38,10 +37,9 @@ export default function SwapValueProp() {
           </FeatureGrid>
           {/**/}
           <div className={s.wrapper}>
-            <img src="/demoplaceholder.png" />
+            <img src="/valueprop.png" />
           </div>
           {/**/}
-          <div></div>
         </FeatureGrid>
       </section>
     </div>
