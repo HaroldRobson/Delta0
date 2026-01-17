@@ -1,9 +1,9 @@
 import s from "./WhySection.module.css";
-import { FeatureGrid } from "../../../FeatureGrid/FeatureGrid";
+import { FeatureGrid } from "@components/FeatureGrid/FeatureGrid";
 import {
   type FeatureBoxProps,
   FeatureBox,
-} from "../../../FeatureGrid/FeatureBox";
+} from "@components/FeatureGrid/FeatureBox";
 import {
   MdShield,
   MdSpeed,

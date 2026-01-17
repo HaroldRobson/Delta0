@@ -1,8 +1,9 @@
-import { FeatureBox } from "../../../FeatureGrid/FeatureBox";
-import { FeatureGrid } from "../../../FeatureGrid/FeatureGrid";
+import { FeatureBox } from "@components/FeatureGrid/FeatureBox";
+import { FeatureGrid } from "@components/FeatureGrid/FeatureGrid";
 import StepCard, { type StepCardProps } from "../StepCard/StepCard";
 import s from "./HowItWorks.module.css";
-import stepImage from "../../../../../public/stepplaceholder.png";
+
+const stepImage = "/stepplaceholder.png";
 
 export default function HowItWorks() {
   const steps: Array<StepCardProps> = [

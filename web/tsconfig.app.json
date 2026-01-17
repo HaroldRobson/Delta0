@@ -22,7 +22,18 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Path aliases */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["../*"],
+      "@contracts/*": ["../delta0_contracts/*"],
+      "@components/*": ["./src/components/*"],
+      "@public/*": ["./public/*"],
+      "@util/*": ["./src/util/*"],
+      "@service/*": ["./src/service/*"]
+    }
   },
   "include": ["src"]
 }

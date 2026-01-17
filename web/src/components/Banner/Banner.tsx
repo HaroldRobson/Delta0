@@ -1,8 +1,8 @@
 import { ConnectButton } from "thirdweb/react";
-import client from "../../util/client";
 import s from "./banner.module.css";
 import { NavLink } from "react-router-dom";
 import classNames from "classnames";
+import client from "@util/client";
 
 type NavLinkProps = {
   location: string;

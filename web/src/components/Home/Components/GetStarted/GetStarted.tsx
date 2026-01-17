@@ -1,8 +1,8 @@
 import { MdOutlineArrowOutward } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useActiveWallet, useConnectModal } from "thirdweb/react";
-import client from "../../../../util/client";
-import Button from "../../../Button/Button";
+import client from "@util/client";
+import Button from "@components/Button/Button";
 
 export default function GetStarted() {
   const navigate = useNavigate();
