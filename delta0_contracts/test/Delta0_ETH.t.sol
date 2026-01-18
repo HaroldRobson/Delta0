@@ -32,8 +32,10 @@ contract PerpAccountMarginSummaryTest is Test {
         l1Read = new L1Read();
 
         CoreSimulatorLib.forceAccountActivation(user);
-        delta0_ETH = new Delta0_ETH(owner, "Delta0_ETH", "D0ETH");
+        vm.startPrank(owner);
+        delta0_ETH = new Delta0_ETH("Delta0_ETH", "D0ETH");
         //CoreSimulatorLib.forcePerpBalance(user, 1000000e6);
+        vm.stopPrank();
 
         CoreSimulatorLib.forceAccountActivation(address(delta0_ETH));
         CoreSimulatorLib.forceSpotBalance(address(delta0_ETH), 150, 200000000000000);

@@ -13,7 +13,7 @@ import {HLConstants} from "../lib/hyper-evm-lib/src/common/HLConstants.sol";
 import {L1Read} from "./utils/L1Read.sol";
 import {IERC20} from "../lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
 
-contract PerpAccountMarginSummaryTest is Test {
+contract FiguringOutCoreWriter is Test {
     HyperCore hyperCore;
     L1Read l1Read;
 
@@ -131,7 +131,7 @@ contract PerpAccountMarginSummaryTest is Test {
         console.log("after isolatedrawUSD", PrecompileLib.position(user, ETH_PERP).isolatedRawUsd);
     }
 
-    function test_transferEVMToCoreThenExchangeAI() external {
+    function test_transferEVMToCoreThenExchange_2() external {
         uint64 UETH_INDEX = 221;
 
         // 1. WARM UP: Force the simulator to fetch token metadata from RPC
