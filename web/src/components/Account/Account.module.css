@@ -56,11 +56,11 @@
 }
 
 .grid {
-  flex: 1;                         
+  flex: 1;
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 32px;
-  align-items: stretch;            
+  align-items: stretch;
 }
 
 .left {
@@ -122,6 +122,7 @@
   border-radius: 10px;
   padding: 6px 10px;
   cursor: pointer;
+  color: var(--accent-green);
 }
 
 .formRow {
@@ -145,6 +146,7 @@
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.12);
   outline: none;
+  color: var(--text-primary);
 }
 
 .modalActions {

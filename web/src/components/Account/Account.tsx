@@ -303,21 +303,30 @@ function AccountAuthed() {
             </div>
 
             <div className={s.modalActions}>
-              <button className={s.ghostBtn} onClick={handleCloseModal}>
-                Cancel
-              </button>
-              <button
-                className={mode === "deposit" ? s.primaryBtn : s.secondaryBtn}
+              <Button
+                label={"Cancel"}
+                onClick={handleCloseModal}
+                color={"var(--text-secondary)"}
+                bgColor={"var(--border-subtle)"}
+              />
+              <Button
+                label={actionLabel}
                 onClick={handleApplyAction}
+                color={
+                  isPending || isAmountInvalid
+                    ? "var(--text-secondary)"
+                    : "var(--bg-dark)"
+                }
+                bgColor={
+                  isPending || isAmountInvalid
+                    ? "var(--border-subtle)"
+                    : "var(--accent-green)"
+                }
                 disabled={isAmountInvalid || isPending}
-              >
-                {actionLabel}
-              </button>
+              />
             </div>
 
-            <div className={s.modalHint}>
-              Connected to HyperEVM Testnet
-            </div>
+            <div className={s.modalHint}>Connected to HyperEVM Testnet</div>
           </div>
         </div>
       )}
