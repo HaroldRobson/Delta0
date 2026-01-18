@@ -4,6 +4,7 @@ import { useWidgetEvents, WidgetEvent } from "@lifi/widget";
 import type { LiFiStep, WidgetEvents } from "@lifi/widget";
 import type { BridgeState, BridgeStep, RouteInfo, StepStatus } from "../types";
 import { getChainNameFromId } from "@util/util";
+import { formatUnits } from "viem";
 
 // Widget event types from WidgetEvents
 // Docs: https://docs.li.fi/widget/widget-events#available-events
@@ -33,9 +34,12 @@ interface RouteStep {
 
 function extractRouteInfo(route: Route): RouteInfo {
   const steps = route.steps;
+  const fromDecimals = route.fromToken?.decimals ?? 18;
+  const toDecimals = route.toToken?.decimals ?? 18;
+
   return {
-    fromAmount: route.fromAmount,
-    toAmount: route.toAmount,
+    fromAmount: formatUnits(BigInt(route.fromAmount), fromDecimals),
+    toAmount: formatUnits(BigInt(route.toAmount), toDecimals),
     fromToken: route.fromToken?.symbol || "Unknown",
     toToken: route.toToken?.symbol || "Unknown",
     fromChain: getChainNameFromId(route.fromChainId),
