@@ -446,9 +446,9 @@ export const VAULT_ADDRESSES: Record<
   number,
   Record<ContractSymbol, `0x${string}`>
 > = {
-  // TODO: Set mainnet address after deploying to HyperEVM mainnet (chain ID 999)
+  // smart contract address
   [hyperEVM.id]: {
-    ["ETH"]: "0xbe6727b535545c67d5caa73dea54865b92cf7907",
+    ["ETH"]: "0x20A34185e9eD4f1D1be2B00874A3dB51BFfE63Aa",
   },
   // TODO: Set testnet address after deploying to HyperEVM testnet (chain ID 998)
   [hyperEVMTestnet.id]: {
@@ -458,8 +458,8 @@ export const VAULT_ADDRESSES: Record<
 
 export function getVaultContract(chainId: number, symbol: ContractSymbol) {
   const chain = chainId === hyperEVMTestnet.id ? hyperEVMTestnet : hyperEVM;
-  console.log('"');
   const address = VAULT_ADDRESSES[chainId][symbol];
+  console.log(`using ${chain} ${address}`);
 
   if (!address) {
     throw new Error(`No vault address configured for chain ${chainId}`);
