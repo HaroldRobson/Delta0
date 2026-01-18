@@ -3,7 +3,7 @@
 Delta0 is a service that allows users to hedge any asset **entirely on chain**, making it **delta-neutral, instantly withdrawable, and yield-generating**. By utilizing Hyperliquid's HyperEVM and HyperCore infrastructure, Delta0 automates the management of long spot positions against short perpetual futures. It would be impossible to make on any other chain, but HyperCore + HyperEVM with CoreWriter facilitate derivatives purchasing, and so this "cash and carry" portfolio can exist entirely on blockchain. We've used Lifi's bridge to enable seamless transfers + trades from other chains to our protocol.
 
 ---
-[D-App](www.delta0.xyz)<br>
+[D-App](https://www.delta0.xyz)<br>
 [Slides (to explain how it works)](https://www.canva.com/design/DAG-vG2ugL0/fXzSz8sSBogkb4GwpLqmcw/edit)<br>
 deployment address (HyperEVM LIVE NOT TESTNET!!!!!):<br>
 0x20A34185e9eD4f1D1be2B00874A3dB51BFfE63Aa<br>
