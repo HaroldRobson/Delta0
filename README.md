@@ -1,21 +1,21 @@
 # Delta0: Fully Decentralized Auto-Hedging on Hyperliquid
 
-Delta0 is a service that allows users to hedge any asset **entirely on chain**, making it **delta-neutral, instantly withdrawable, and yield-generating**. By utilizing Hyperliquid's HyperEVM and HyperCore infrastructure, Delta0 automates the management of long spot positions against short perpetual futures.
+Delta0 is a service that allows users to hedge any asset **entirely on chain**, making it **delta-neutral, instantly withdrawable, and yield-generating**. By utilizing Hyperliquid's HyperEVM and HyperCore infrastructure, Delta0 automates the management of long spot positions against short perpetual futures. It would be impossible to make on any other chain, but HyperCore + HyperEVM with CoreWriter facilitate derivatives purchasing, and so this "cash and carry" portfolio can exist entirely on blockchain. We've used Lifi's bridge to enable seamless transfers + trades from other chains to our protocol.
 
 ---
 
 ## Project Structure
 
 * 
-`backend/`: Off-chain logic for calculating optimal target leverage using Geometric Brownian Motion.
+`backend/`: Off-chain logic for calculating optimal target leverage using Geometric Brownian Motion. Coming Soon.
 
 
 * 
-`delta0_contracts/`: Solidity smart contracts for HyperEVM, including the rebalancing engine and withdrawal curve logic.
+`delta0_contracts/`: Solidity smart contracts for HyperEVM, including the rebalancing logic and withdrawal curve logic. (Delta0_ETH.sol)
 
 
 * 
-`web/`: A React + Vite frontend for managing deposits, monitoring yields, and executing cross-chain swaps.
+`web/`: A React + Vite frontend for managing deposits, monitoring yields, and executing cross-chain swaps using LiFi.
 
 
 * `lib/`: Shared dependencies and libraries.
@@ -34,11 +34,11 @@ Yield is primarily generated from the **funding rate**. As short holders, the co
 
 ### 3. Smart Rebalancing
 
-Every EVM block, a `rebalance()` function is called. The protocol checks current spot and perp values and executes trades to maintain delta-neutrality based on a **Target Leverage** calculated off-chain.
+Every EVM block, a `rebalance()` function is called. The protocol checks current spot and perp values and executes trades to maintain delta-neutrality based on a **Target Leverage** calculated off-chain, and passed in as a function parameter to rebalance().
 this is in two stages - rebalanceA() which increases/decreases collateral, and changes short size. When rebalance() is called next, rebalanceB() executes, either bridging ETH back to HyperEVM (if increasing leverage), or transferring the class of previously bridged HyperCore USDC to be margin collateral (when de-leveraging).
 ### 4. Liquidity & Withdrawals
 
-Users can withdraw their position at any time. To prevent "runs on the bank," Delta0 employs an **Anti-Run Withdrawal Curve**. If a withdrawal would dangerously deplete EVM liquidity, a "haircut" fee is applied to incentivize users to spread out withdrawals.
+Users can withdraw their position at any time. To prevent "runs on the bank," Delta0 employs an **Anti-Run Withdrawal Curve**. If a withdrawal would dangerously deplete EVM liquidity, a "haircut" fee is applied to incentivize users to spread out withdrawals, and provide the protocol enough time to rebalance.
 
 ---
 
