@@ -108,7 +108,6 @@ contract Delta0_ETH is ERC20 {
     function deposit(uint256 amount) public {
         address user = msg.sender;
         Token.transferFrom(user, address(this), amount);
-        uint64 tokenIndex = PrecompileLib.getTokenIndex(TokenAddress);
         uint256 USDCValueReceived = PrecompileLib.normalizedMarkPx(perpdexindex) * amount / 1e12;
         if (totalSupply() != 0) {
             uint256 tokensToMint = USDCValueReceived * totalSupply() / totalUSDCValueUnderManagement();
@@ -124,7 +123,7 @@ contract Delta0_ETH is ERC20 {
             .transfer(
                 user,
                 (valueLockedByUser(user) * withdrawalMultiplier(amount) * amount * 1e18 / balanceOf(user))
-                    / (PrecompileLib.normalizedMarkPx(perpdexindex))
+                    / (PrecompileLib.normalizedMarkPx(perpdexindex) * 1e4)
             );
         _burn(user, amount);
     }
@@ -280,7 +279,7 @@ contract Delta0_ETH is ERC20 {
                 returnVal2 = increaseShortSize(targetShortOnHyperCore - shortOnHyperCore);
             }
             if (targetShortOnHyperCore < shortOnHyperCore) {
-                returnVal2 = decreaseShortSize(shortOnHyperCore = targetShortOnHyperCore);
+                returnVal2 = decreaseShortSize(shortOnHyperCore - targetShortOnHyperCore);
             }
         }
 
